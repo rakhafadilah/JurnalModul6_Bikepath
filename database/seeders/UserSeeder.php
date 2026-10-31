@@ -10,9 +10,6 @@ use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $faker = Faker::create('id_ID');
@@ -24,5 +21,10 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
         }
+
+        User::updateOrCreate(
+            ['email' => 'admin@bikepath.test'],
+            ['name' => 'Admin BikePath', 'password' => Hash::make('admin123')]
+        );
     }
 }
